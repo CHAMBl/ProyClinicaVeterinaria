@@ -17,8 +17,9 @@ public abstract class Mascota {
     protected String fechaNacimiento;
     protected double peso;
     protected String estado;
+    protected Cliente cliente;
 
-    public Mascota(String codigoMascota, String nombre, String especie, String raza, String sexo, String fechaNacimiento, double peso, String estado) {
+    public Mascota(String codigoMascota, String nombre, String especie, String raza, String sexo, String fechaNacimiento, double peso, String estado, Cliente cliente) {
         this.codigoMascota = codigoMascota;
         this.nombre = nombre;
         this.especie = especie;
@@ -27,6 +28,7 @@ public abstract class Mascota {
         this.fechaNacimiento = fechaNacimiento;
         this.peso = peso;
         this.estado = estado;
+        this.cliente = cliente;
     }
 
     public String getCodigoMascota() {
@@ -92,6 +94,25 @@ public abstract class Mascota {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
     
-    public abstract void mostrarDatos();    
+    public abstract double calcularDosis();
+    
+    protected void mostrarDatosComunes() {
+        System.out.println("Código: " + codigoMascota + " | Especie: " + especie);
+        System.out.println("Nombre: " + nombre + " | Raza: " + raza + " | Sexo: " + sexo);
+        System.out.println("Fecha de nacimiento: " + fechaNacimiento + " | Peso: " + peso + " kg");
+        System.out.println("Estado: " + estado);
+        System.out.println("Cliente: " + cliente.getNombreCompleto() + " (DNI " + cliente.getDni() + ")");
+    }
+    
+    public abstract void mostrarDatos();
+    
 }

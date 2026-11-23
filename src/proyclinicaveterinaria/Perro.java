@@ -10,13 +10,19 @@ package proyclinicaveterinaria;
  */
 public class Perro extends Mascota{
 
-    public Perro(String codigoMascota, String nombre, String especie, String raza, String sexo, String fechaNacimiento, double peso, String estado) {
-        super(codigoMascota, nombre, especie, raza, sexo, fechaNacimiento, peso, estado);
-    }
-
-    @Override
-    public void mostrarDatos() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Perro(String codigoMascota, String nombre, String especie, String raza, String sexo, String fechaNacimiento, double peso, String estado, Cliente cliente) {
+        super(codigoMascota, nombre, especie, raza, sexo, fechaNacimiento, peso, estado, cliente);
     }
     
+    @Override
+    public double calcularDosis() {
+        // Seria 10 miligramos x cada kg de peso
+        return peso*10;
+        
+    }
+    @Override
+    public void mostrarDatos() {
+        mostrarDatosComunes();
+        System.out.println("Dosis sugerida: " + calcularDosis() + " mg"); 
+    }
 }
