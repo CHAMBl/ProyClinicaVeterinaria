@@ -30,9 +30,9 @@ public class ProyClinicaVeterinaria {
         int opcion;
         do {
             System.out.println("\n=== CLÍNICA VETERINARIA ===");
-            System.out.println("1. Iniciar sesión");
+            System.out.println("1. Iniciar sesion");
             System.out.println("0. Salir");
-            opcion = leerEntero("Opción: ");
+            opcion = leerEntero("Opcion: ");
             if (opcion == 1) {
                 iniciarSesion();
             }
@@ -62,11 +62,11 @@ public class ProyClinicaVeterinaria {
     static void menuAdministrador() {
         int opcion;
         do {
-            System.out.println("\n--- MENÚ ADMINISTRADOR ---");
+            System.out.println("\n--- MENU ADMINISTRADOR ---");
             System.out.println("1. Gestionar empleados");
             System.out.println("2. Gestionar clientes");
-            System.out.println("0. Cerrar sesión");
-            opcion = leerEntero("Opción: ");
+            System.out.println("0. Cerrar sesion");
+            opcion = leerEntero("Opcion: ");
             switch (opcion) {
                 case 1:
                     menuEmpleados();
@@ -77,7 +77,7 @@ public class ProyClinicaVeterinaria {
                 case 0:
                     break;
                 default:
-                    System.out.println("Opción no válida.");
+                    System.out.println("Opcion no valida.");
             }
         } while (opcion != 0);
     }
@@ -87,8 +87,8 @@ public class ProyClinicaVeterinaria {
         do {
             System.out.println("\n--- MENÚ RECEPCIONISTA ---");
             System.out.println("1. Gestionar clientes");
-            System.out.println("0. Cerrar sesión");
-            opcion = leerEntero("Opción: ");
+            System.out.println("0. Cerrar sesion");
+            opcion = leerEntero("Opcion: ");
             switch (opcion) {
                 case 1:
                     menuClientes();
@@ -96,7 +96,7 @@ public class ProyClinicaVeterinaria {
                 case 0:
                     break;
                 default:
-                    System.out.println("Opción no válida.");
+                    System.out.println("Opción no valida.");
             }
         } while (opcion != 0);
     }
@@ -104,7 +104,7 @@ public class ProyClinicaVeterinaria {
     static void menuVeterinario() {
         int opcion;
         do {
-            System.out.println("\n--- MENÚ VETERINARIO ---");
+            System.out.println("\n--- MENU VETERINARIO ---");
             System.out.println("1. Consultar clientes");
             System.out.println("2. Cambiar mi disponibilidad");
             System.out.println("0. Cerrar sesión");
@@ -119,7 +119,7 @@ public class ProyClinicaVeterinaria {
                 case 0:
                     break;
                 default:
-                    System.out.println("Opción no válida.");
+                    System.out.println("Opcion no valida.");
             }
         } while (opcion != 0);
     }
@@ -133,13 +133,13 @@ public class ProyClinicaVeterinaria {
     static void menuEmpleados() {
         int opcion;
         do {
-            System.out.println("\n--- GESTIÓN DE EMPLEADOS ---");
+            System.out.println("\n--- GESTION DE EMPLEADOS ---");
             System.out.println("1. Registrar empleado");
             System.out.println("2. Modificar empleado");
             System.out.println("3. Eliminar empleado");
             System.out.println("4. Listar empleados");
             System.out.println("0. Volver");
-            opcion = leerEntero("Opción: ");
+            opcion = leerEntero("Opcion: ");
             switch (opcion) {
                 case 1:
                     registrarEmpleado();
@@ -156,7 +156,7 @@ public class ProyClinicaVeterinaria {
                 case 0:
                     break;
                 default:
-                    System.out.println("Opción no válida.");
+                    System.out.println("Opcion no válida.");
             }
         } while (opcion != 0);
     }
@@ -169,7 +169,7 @@ public class ProyClinicaVeterinaria {
         System.out.println("Rol del empleado: 1. Administrador  2. Recepcionista  3. Veterinario");
         int rol = leerEntero("Rol: ");
         if (rol < 1 || rol > 3) {
-            System.out.println("Rol no válido.");
+            System.out.println("Rol no valido.");
             return;
         }
         int dni = leerDni("DNI (8 dígitos): ");
@@ -218,7 +218,7 @@ public class ProyClinicaVeterinaria {
         }
         System.out.println("Datos actuales:");
         e.mostrarDatos();
-        System.out.println("Deje vacío para mantener el valor actual.");
+        System.out.println("Deje vacio para mantener el valor actual.");
 
         String nombres = leerOpcional("Nuevos nombres: ");
         if (!nombres.isEmpty()) {
@@ -244,7 +244,7 @@ public class ProyClinicaVeterinaria {
         String usuario = leerOpcional("Nuevo usuario: ");
         if (!usuario.isEmpty()) {
             if (gestorEmpleados.existeUsuario(usuario, e)) {
-                System.out.println("Ese usuario ya está en uso, se mantiene el anterior.");
+                System.out.println("Ese usuario ya esta en uso, se mantiene el anterior.");
             } else {
                 e.setUsuario(usuario);
             }
@@ -272,7 +272,7 @@ public class ProyClinicaVeterinaria {
             return;
         }
         if (e == usuarioActual) {
-            System.out.println("No puede eliminar su propia cuenta mientras está en sesión.");
+            System.out.println("No puede eliminar su propia cuenta mientras esta en sesion.");
             return;
         }
         e.mostrarDatos();
@@ -280,14 +280,14 @@ public class ProyClinicaVeterinaria {
             gestorEmpleados.eliminar(dni);
             System.out.println("Empleado eliminado.");
         } else {
-            System.out.println("Operación cancelada.");
+            System.out.println("Operacion cancelada.");
         }
     }
 
     static void menuClientes() {
         int opcion;
         do {
-            System.out.println("\n--- GESTIÓN DE CLIENTES ---");
+            System.out.println("\n--- GESTION DE CLIENTES ---");
             System.out.println("1. Registrar cliente");
             System.out.println("2. Modificar cliente");
             System.out.println("3. Eliminar cliente");
@@ -361,7 +361,7 @@ public class ProyClinicaVeterinaria {
         String dniTxt = leerOpcional("Nuevo DNI (8 dígitos): ");
         if (!dniTxt.isEmpty()) {
             if (!esDniValido(dniTxt)) {
-                System.out.println("DNI no válido, se mantiene el anterior.");
+                System.out.println("DNI no valido, se mantiene el anterior.");
             } else {
                 int nuevoDni = Integer.parseInt(dniTxt);
                 if (gestorClientes.existeDni(nuevoDni, c)) {
@@ -371,7 +371,7 @@ public class ProyClinicaVeterinaria {
                 }
             }
         }
-        String telefono = leerOpcional("Nuevo teléfono: ");
+        String telefono = leerOpcional("Nuevo telefono: ");
         if (!telefono.isEmpty()) {
             c.setTelefono(telefono);
         }
@@ -379,7 +379,7 @@ public class ProyClinicaVeterinaria {
         if (!correo.isEmpty()) {
             c.setCorreo(correo);
         }
-        String direccion = leerOpcional("Nueva dirección: ");
+        String direccion = leerOpcional("Nueva direccion: ");
         if (!direccion.isEmpty()) {
             c.setDireccion(direccion);
         }
@@ -398,7 +398,7 @@ public class ProyClinicaVeterinaria {
             gestorClientes.eliminar(dni);
             System.out.println("Cliente eliminado.");
         } else {
-            System.out.println("Operación cancelada.");
+            System.out.println("Operacion cancelada.");
         }
     }
 
@@ -425,7 +425,7 @@ public class ProyClinicaVeterinaria {
             try {
                 return Integer.parseInt(sc.nextLine().trim());
             } catch (NumberFormatException ex) {
-                System.out.println("Ingrese un número válido.");
+                System.out.println("Ingrese un numero válido.");
             }
         }
     }
@@ -441,7 +441,7 @@ public class ProyClinicaVeterinaria {
             if (esDniValido(texto)) {
                 return Integer.parseInt(texto);
             }
-            System.out.println("El DNI debe tener exactamente 8 dígitos.");
+            System.out.println("El DNI debe tener exactamente 8 digitos.");
         }
     }
 
