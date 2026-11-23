@@ -8,6 +8,14 @@ package proyclinicaveterinaria;
  *
  * @author bonif
  */
-public class Recepcionista {
+public class Recepcionista extends Empleado {
     
+    public Recepcionista(String nombres, String apellidos, int dni) {
+        super(nombres, apellidos, dni);
+    }
+    
+    @Override
+    public String getPermisos() {
+        return "Gestiona clientes y mascotas. Programa citas.";
+    }
 }

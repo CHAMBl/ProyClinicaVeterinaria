@@ -43,5 +43,8 @@ public abstract class Persona {
         this.dni = dni;
     }
     
+    public String getNombreCompleto() {
+        return nombres + " " + apellidos;
+    }
     public abstract void mostrarDatos();
 }

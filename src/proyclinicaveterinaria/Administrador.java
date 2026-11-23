@@ -8,6 +8,15 @@ package proyclinicaveterinaria;
  *
  * @author bonif
  */
-public class Administrador {
+public class Administrador extends Empleado {
+
+    public Administrador(String nombres, String apellidos, int dni) {
+        super(nombres, apellidos, dni);
+    }
+    
+    @Override
+    public String getPermisos() {
+        return "Gestiona empleados y servicios.";
+    }
     
 }
