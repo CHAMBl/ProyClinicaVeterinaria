@@ -9,6 +9,9 @@ package proyclinicaveterinaria;
  * @author bonif
  */
 public abstract class Persona {
+    
+    // De persona padre sale empleado y cliente como hijos
+    
     protected String nombres;
     protected String apellidos;
     protected int dni;

@@ -9,6 +9,9 @@ package proyclinicaveterinaria;
  * @author silver
  */
 public abstract class Mascota {
+    
+    // De mascota padre salen perro, gato y ave como hijos
+    
     protected String codigoMascota;
     protected String nombre;
     protected String especie;
