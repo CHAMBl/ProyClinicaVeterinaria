@@ -96,4 +96,12 @@ public class GestorEmpleados {
             System.out.println("----------------------------");
         }
     }
+        // devuelve solo los empleados registrados (GUI)
+    public Empleado[] getLista() {
+        Empleado[] lista = new Empleado[cantidad];
+        for (int i = 0; i < cantidad; i++) {
+            lista[i] = empleados[i];
+        }
+        return lista;
+    }
 }

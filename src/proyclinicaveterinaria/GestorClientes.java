@@ -76,4 +76,12 @@ public class GestorClientes {
             System.out.println("----------------------------");
         }
     }
+        // devuelve solo los clientes registrados (GUI)
+    public Cliente[] getLista() {
+        Cliente[] lista = new Cliente[cantidad];
+        for (int i = 0; i < cantidad; i++) {
+            lista[i] = clientes[i];
+        }
+        return lista;
+    }
 }
