@@ -20,6 +20,8 @@ public class LoginIU extends JFrame implements ActionListener {
     private GestorClientes gestorclientes;
     private GestorMascotas gestormascotas;
     private GestorServicios gestorservicios;
+    private GestorMedicamentos gestormedicamentos;
+    private GestorCitas gestorcitas;
 
     private JTextField txtusuario;
     private JTextField txtcontrasena; // TODO: cambiar por JPasswordField cuando se vea en clase (no está en los ejemplos)
@@ -30,6 +32,8 @@ public class LoginIU extends JFrame implements ActionListener {
         gestorclientes = new GestorClientes(100);
         gestormascotas = new GestorMascotas(200);
         gestorservicios = new GestorServicios(30);
+        gestormedicamentos = new GestorMedicamentos(100);
+        gestorcitas = new GestorCitas(300);
 
         // Administrador inicial (el mismo que crea el main de consola) para poder entrar la primera vez
         Administrador admin = new Administrador("Admin", "Principal", 12345678);
@@ -43,11 +47,14 @@ public class LoginIU extends JFrame implements ActionListener {
 
     // Constructor 2: al cerrar sesión. Recibe los mismos arreglos para no perder los datos
     public LoginIU(GestorEmpleados gestorempleados, GestorClientes gestorclientes,
-            GestorMascotas gestormascotas, GestorServicios gestorservicios) {
+            GestorMascotas gestormascotas, GestorServicios gestorservicios,
+            GestorMedicamentos gestormedicamentos, GestorCitas gestorcitas) {
         this.gestorempleados = gestorempleados;
         this.gestorclientes = gestorclientes;
         this.gestormascotas = gestormascotas;
         this.gestorservicios = gestorservicios;
+        this.gestormedicamentos = gestormedicamentos;
+        this.gestorcitas = gestorcitas;
         armarVentana();
     }
 
@@ -125,7 +132,8 @@ public class LoginIU extends JFrame implements ActionListener {
         }
 
         // Abrir el menú principal y cerrar esta ventana
-        MenuPrincipalIU frmmenu = new MenuPrincipalIU(gestorempleados, gestorclientes, gestormascotas, gestorservicios, empleado);
+        MenuPrincipalIU frmmenu = new MenuPrincipalIU(gestorempleados, gestorclientes, gestormascotas, gestorservicios,
+                gestormedicamentos, gestorcitas, empleado);
         frmmenu.setVisible(true);
         dispose();
     }

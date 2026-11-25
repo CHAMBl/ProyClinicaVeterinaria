@@ -19,6 +19,8 @@ public class MenuPrincipalIU extends JFrame implements ActionListener {
     private GestorClientes gestorclientes;
     private GestorMascotas gestormascotas;
     private GestorServicios gestorservicios;
+    private GestorMedicamentos gestormedicamentos;
+    private GestorCitas gestorcitas;
     private Empleado usuarioactual; // empleado que inició sesión
 
     // Ventanas que se van abriendo, para poder cerrarlas todas al cerrar sesión
@@ -26,11 +28,14 @@ public class MenuPrincipalIU extends JFrame implements ActionListener {
     private int cantidadventanas = 0;
 
     public MenuPrincipalIU(GestorEmpleados gestorempleados, GestorClientes gestorclientes,
-            GestorMascotas gestormascotas, GestorServicios gestorservicios, Empleado usuarioactual) {
+            GestorMascotas gestormascotas, GestorServicios gestorservicios,
+            GestorMedicamentos gestormedicamentos, GestorCitas gestorcitas, Empleado usuarioactual) {
         this.gestorempleados = gestorempleados;
         this.gestorclientes = gestorclientes;
         this.gestormascotas = gestormascotas;
         this.gestorservicios = gestorservicios;
+        this.gestormedicamentos = gestormedicamentos;
+        this.gestorcitas = gestorcitas;
         this.usuarioactual = usuarioactual;
 
         // Configuración de la ventana principal
@@ -75,15 +80,16 @@ public class MenuPrincipalIU extends JFrame implements ActionListener {
         if (usuarioactual instanceof Administrador) {
             menugestion.add(crearItem("Empleados"));
             menugestion.add(crearItem("Servicios"));
+            menugestion.add(crearItem("Medicamentos"));
         } else if (usuarioactual instanceof Recepcionista) {
             menugestion.add(crearItem("Clientes"));
             menugestion.add(crearItem("Mascotas"));
+            menugestion.add(crearItem("Citas"));
         } else if (usuarioactual instanceof Veterinario) {
             menugestion.add(crearItem("Mi disponibilidad"));
         }
         barramenu.add(menugestion);
 
-        // TODO RF05: Recepcionista -> menú "Procesos" con la opción "Programar cita"
         // TODO RF06: Veterinario -> menú "Procesos" con las opciones de atención
         // TODO RF10: Administrador -> menú "Reportes"
 
@@ -110,6 +116,10 @@ public class MenuPrincipalIU extends JFrame implements ActionListener {
             abrirVentana(new GestionClientesIU(gestorclientes));
         } else if (comando.equals("Mascotas")) {
             abrirVentana(new GestionMascotasIU(gestormascotas, gestorclientes));
+        } else if (comando.equals("Medicamentos")) {
+            abrirVentana(new GestionMedicamentosIU(gestormedicamentos));
+        } else if (comando.equals("Citas")) {
+            abrirVentana(new GestionCitasIU(gestorcitas, gestormascotas, gestorempleados, gestorservicios));
         } else if (comando.equals("Mi disponibilidad")) {
             cambiarDisponibilidad();
         } else if (comando.equals("Cerrar sesión")) {
@@ -141,7 +151,8 @@ public class MenuPrincipalIU extends JFrame implements ActionListener {
 
     private void cerrarSesion() {
         // Volver al login con los mismos arreglos (no se pierden los datos)
-        LoginIU frmlogin = new LoginIU(gestorempleados, gestorclientes, gestormascotas, gestorservicios);
+        LoginIU frmlogin = new LoginIU(gestorempleados, gestorclientes, gestormascotas, gestorservicios,
+                gestormedicamentos, gestorcitas); //faltaarreglar
         frmlogin.setVisible(true);
         // Cerrar las ventanas que quedaron abiertas, para que no se usen con otro rol
         for (int i = 0; i < cantidadventanas; i++) {
