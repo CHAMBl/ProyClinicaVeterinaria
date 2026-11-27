@@ -254,17 +254,21 @@ public class GestionClientesIU extends JFrame implements ActionListener {
         modelotabla.addColumn("Teléfono");
         modelotabla.addColumn("Correo");
         modelotabla.addColumn("Dirección");
+        modelotabla.addColumn("Atenciones");
+        modelotabla.addColumn("Categoría");
 
         Cliente[] lista = gestorclientes.getLista();
         for (int i = 0; i < lista.length; i++) {
             Cliente cliente = lista[i];
-            String[] fila = new String[6];
+            String[] fila = new String[8];
             fila[0] = String.valueOf(cliente.getDni());
             fila[1] = cliente.getNombres();
             fila[2] = cliente.getApellidos();
             fila[3] = cliente.getTelefono();
             fila[4] = cliente.getCorreo();
             fila[5] = cliente.getDireccion();
+            fila[6] = String.valueOf(cliente.getAtencionesFinalizadas());
+            fila[7] = cliente.getDescuento().getNombre();
             // Agregar esta fila al modelo de la tabla
             modelotabla.addRow(fila);
         }

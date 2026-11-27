@@ -335,7 +335,7 @@ public class GestionCitasIU extends JFrame implements ActionListener {
             return;
         }
         // TODO: pedir confirmación antes de cancelar (cuando se vea el cuadro de diálogo de confirmación)
-        cita.setEstado("Cancelada");
+        cita.cambiarEstado("Cancelada");
         JOptionPane.showMessageDialog(this, "Cita cancelada correctamente.");
         llenarTabla();
         limpiarCampos();

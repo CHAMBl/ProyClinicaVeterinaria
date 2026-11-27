@@ -21,6 +21,7 @@ public class MenuPrincipalIU extends JFrame implements ActionListener {
     private GestorServicios gestorservicios;
     private GestorMedicamentos gestormedicamentos;
     private GestorCitas gestorcitas;
+    private GestorAtenciones gestoratenciones;
     private Empleado usuarioactual; // empleado que inició sesión
 
     // Ventanas que se van abriendo, para poder cerrarlas todas al cerrar sesión
@@ -29,13 +30,15 @@ public class MenuPrincipalIU extends JFrame implements ActionListener {
 
     public MenuPrincipalIU(GestorEmpleados gestorempleados, GestorClientes gestorclientes,
             GestorMascotas gestormascotas, GestorServicios gestorservicios,
-            GestorMedicamentos gestormedicamentos, GestorCitas gestorcitas, Empleado usuarioactual) {
+            GestorMedicamentos gestormedicamentos, GestorCitas gestorcitas,
+            GestorAtenciones gestoratenciones, Empleado usuarioactual) {
         this.gestorempleados = gestorempleados;
         this.gestorclientes = gestorclientes;
         this.gestormascotas = gestormascotas;
         this.gestorservicios = gestorservicios;
         this.gestormedicamentos = gestormedicamentos;
         this.gestorcitas = gestorcitas;
+        this.gestoratenciones = gestoratenciones;
         this.usuarioactual = usuarioactual;
 
         // Configuración de la ventana principal
@@ -86,11 +89,11 @@ public class MenuPrincipalIU extends JFrame implements ActionListener {
             menugestion.add(crearItem("Mascotas"));
             menugestion.add(crearItem("Citas"));
         } else if (usuarioactual instanceof Veterinario) {
+            menugestion.add(crearItem("Mis atenciones"));
             menugestion.add(crearItem("Mi disponibilidad"));
         }
         barramenu.add(menugestion);
 
-        // TODO RF06: Veterinario -> menú "Procesos" con las opciones de atención
         // TODO RF10: Administrador -> menú "Reportes"
 
         setJMenuBar(barramenu);
@@ -120,6 +123,8 @@ public class MenuPrincipalIU extends JFrame implements ActionListener {
             abrirVentana(new GestionMedicamentosIU(gestormedicamentos));
         } else if (comando.equals("Citas")) {
             abrirVentana(new GestionCitasIU(gestorcitas, gestormascotas, gestorempleados, gestorservicios));
+        } else if (comando.equals("Mis atenciones")) {
+            abrirVentana(new GestionAtencionesIU(gestoratenciones, gestorcitas, gestormedicamentos, usuarioactual));
         } else if (comando.equals("Mi disponibilidad")) {
             cambiarDisponibilidad();
         } else if (comando.equals("Cerrar sesión")) {
@@ -152,7 +157,7 @@ public class MenuPrincipalIU extends JFrame implements ActionListener {
     private void cerrarSesion() {
         // Volver al login con los mismos arreglos (no se pierden los datos)
         LoginIU frmlogin = new LoginIU(gestorempleados, gestorclientes, gestormascotas, gestorservicios,
-                gestormedicamentos, gestorcitas); //faltaarreglar
+                gestormedicamentos, gestorcitas, gestoratenciones);
         frmlogin.setVisible(true);
         // Cerrar las ventanas que quedaron abiertas, para que no se usen con otro rol
         for (int i = 0; i < cantidadventanas; i++) {

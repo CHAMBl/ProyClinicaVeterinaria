@@ -1,12 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package proyclinicaveterinaria;
 
 /**
- *
- * @author silver
+ * CLASE MODIFICADA (RF05 y RF06): una cita. Relaciona una Mascota, un veterinario (Empleado) y un Servicio.
+ * Estados: Programada -> En Atención -> Finalizada   (o Cancelada).
+ * Cada cambio de estado queda guardado en un arreglo (historial).
  */
 public class Cita {
     private int numero;
@@ -17,6 +14,10 @@ public class Cita {
     private String hora;   // hh:mm
     private String estado;
 
+    // Historial de cambios de estado
+    private String[] historial = new String[20];
+    private int cantidadhistorial = 0;
+
     public Cita(int numero, Mascota mascota, Empleado veterinario, Servicio servicio, String fecha, String hora) {
         this.numero = numero;
         this.mascota = mascota;
@@ -25,6 +26,8 @@ public class Cita {
         this.fecha = fecha;
         this.hora = hora;
         this.estado = "Programada";
+        historial[0] = "Cita creada: Programada";
+        cantidadhistorial = 1;
     }
 
     public int getNumero() { return numero; }
@@ -39,5 +42,22 @@ public class Cita {
     public void setServicio(Servicio servicio) { this.servicio = servicio; }
     public void setFecha(String fecha) { this.fecha = fecha; }
     public void setHora(String hora) { this.hora = hora; }
-    public void setEstado(String estado) { this.estado = estado; }
+
+    // Cambia el estado y deja constancia en el historial (reemplaza al antiguo setEstado)
+    public void cambiarEstado(String nuevoestado) {
+        if (cantidadhistorial < historial.length) {
+            historial[cantidadhistorial] = estado + " -> " + nuevoestado;
+            cantidadhistorial++;
+        }
+        estado = nuevoestado;
+    }
+
+    // Devuelve el historial como un solo texto, una línea por cambio
+    public String getTextoHistorial() {
+        String texto = "";
+        for (int i = 0; i < cantidadhistorial; i++) {
+            texto = texto + (i + 1) + ". " + historial[i] + "\n";
+        }
+        return texto;
+    }
 }
